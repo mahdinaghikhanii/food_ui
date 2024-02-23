@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
+
+import 'const.dart';
+import 'models/foodcategory.dart';
+import 'models/foodtrending.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,119 +13,431 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MainPage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MainPage> createState() => _MainPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _MainPageState extends State<MainPage> {
+  List<FoodCategory> foodCategory = [
+    FoodCategory(
+        foodName: 'Salad',
+        imageUrl:
+            'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80'),
+    FoodCategory(
+        foodName: 'Pizza',
+        imageUrl:
+            'https://images.unsplash.com/photo-1622219773524-eaaa721c760d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'),
+    FoodCategory(
+        foodName: 'Cake',
+        imageUrl:
+            'https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80'),
+    FoodCategory(
+        foodName: 'Burger',
+        imageUrl:
+            'https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=722&q=80'),
+    FoodCategory(
+        foodName: 'Drink',
+        imageUrl:
+            'https://images.unsplash.com/photo-1609951651556-5334e2706168?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80')
+  ];
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  List<FoodTrending> foodTrendings = [
+    FoodTrending(
+        foodName: 'Food1',
+        review: '500 Reviews',
+        calories: '100-300 calories',
+        price: '\$12',
+        imageUrl:
+            'https://images.unsplash.com/photo-1455853659719-4b521eebc76d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'),
+    FoodTrending(
+        foodName: 'Food2',
+        review: '500 Reviews',
+        calories: '100-300 calories',
+        price: '\$50',
+        imageUrl:
+            'https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80'),
+    FoodTrending(
+        foodName: 'Food3',
+        review: '500 Reviews',
+        calories: '100-300 calories',
+        price: '\$22',
+        imageUrl:
+            'https://images.unsplash.com/photo-1582993728648-1f29c748e5ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=668&q=80'),
+    FoodTrending(
+        foodName: 'Food4',
+        review: '500 Reviews',
+        calories: '100-300 calories',
+        price: '\$30',
+        imageUrl:
+            'https://images.unsplash.com/photo-1574521594448-efc5905a7b8f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80')
+  ];
 
+  int index = 0;
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _header(),
+                const SizedBox(height: 20),
+                _search(),
+                const SizedBox(height: 20),
+                _cardOrder(),
+                const SizedBox(height: 14),
+                _category(),
+                const SizedBox(height: 14),
+                _foodTrending(),
+              ],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      bottomNavigationBar: _bottomBar(),
+    );
+  }
+
+  BottomNavigationBar _bottomBar() {
+    return BottomNavigationBar(
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(
+            Iconsax.home,
+            size: 28,
+          ),
+          activeIcon: Icon(
+            Iconsax.home5,
+            size: 28,
+          ),
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Iconsax.document,
+            size: 28,
+          ),
+          activeIcon: Icon(
+            Iconsax.document5,
+            size: 28,
+          ),
+          label: 'Order',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Iconsax.chart_2,
+            size: 28,
+          ),
+          activeIcon: Icon(
+            Iconsax.chart_215,
+            size: 28,
+          ),
+          label: 'Stats',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Iconsax.lovely,
+            size: 28,
+          ),
+          activeIcon: Icon(
+            Iconsax.lovely5,
+            size: 28,
+          ),
+          label: 'Saved',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Iconsax.user,
+            size: 28,
+          ),
+          activeIcon: Icon(
+            Iconsax.profile_add5,
+            size: 28,
+          ),
+          label: 'Profile',
+        ),
+      ],
+      currentIndex: index,
+      unselectedItemColor: Colors.grey,
+      selectedItemColor: primaryColor,
+      showUnselectedLabels: true,
+      type: BottomNavigationBarType.fixed,
+      unselectedLabelStyle:
+          GoogleFonts.poppins(fontSize: 13, fontWeight: FontWeight.w600),
+      selectedLabelStyle:
+          GoogleFonts.poppins(fontSize: 13, fontWeight: FontWeight.w600),
+      onTap: (value) {
+        setState(() {
+          index = value;
+        });
+      },
+    );
+  }
+
+  Column _foodTrending() {
+    return Column(children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            "Trending Now",
+            style:
+                GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w600),
+          ),
+          MaterialButton(
+            onPressed: () {},
+            color: Color(0xfff1f1ef),
+            elevation: 0,
+            height: 28,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+            child: Text(
+              "View All",
+              style: GoogleFonts.poppins(
+                  fontSize: 13, fontWeight: FontWeight.w500),
+            ),
+          )
+        ],
+      ),
+      GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 0.82,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10),
+        itemCount: foodTrendings.length,
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (context, index) => InkWell(
+          onTap: () {
+            //onpress
+          },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: double.infinity,
+                height: 110,
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: Image.network(
+                      '${foodTrendings[index].imageUrl}',
+                      fit: BoxFit.cover,
+                    )),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                "${foodTrendings[index].foodName}",
+                style: GoogleFonts.poppins(
+                    fontSize: 16, fontWeight: FontWeight.w600),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                "${foodTrendings[index].review}",
+                style: GoogleFonts.poppins(
+                    fontSize: 14, fontWeight: FontWeight.w400),
+              ),
+              Text(
+                "${foodTrendings[index].calories}",
+                style: GoogleFonts.poppins(
+                    fontSize: 14, fontWeight: FontWeight.w400),
+              ),
+              // const SizedBox(height: 8),
+              Text(
+                "${foodTrendings[index].price}",
+                style: GoogleFonts.poppins(
+                    fontSize: 18, fontWeight: FontWeight.w600),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ]);
+  }
+
+  Column _category() {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "Browse by category",
+              style: GoogleFonts.poppins(
+                  fontSize: 20, fontWeight: FontWeight.w600),
+            ),
+            MaterialButton(
+              onPressed: () {},
+              color: Color(0xfff1f1ef),
+              elevation: 0,
+              height: 28,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(24)),
+              child: Text(
+                "View All",
+                style: GoogleFonts.poppins(
+                    fontSize: 13, fontWeight: FontWeight.w500),
+              ),
+            )
+          ],
+        ),
+        Container(
+            height: 118,
+            child: ListView.builder(
+              itemCount: foodCategory.length,
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemExtent: 100,
+              itemBuilder: ((context, index) => Column(
+                    children: [
+                      SizedBox(
+                        width: 80,
+                        height: 80,
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: Image.network(
+                              '${foodCategory[index].imageUrl}',
+                              fit: BoxFit.cover,
+                            )),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        "${foodCategory[index].foodName}",
+                        style: GoogleFonts.poppins(
+                            fontSize: 16, fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  )),
+            ))
+      ],
+    );
+  }
+
+  Row _header() {
+    return Row(
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Welcome,",
+              style: GoogleFonts.poppins(
+                  fontSize: 16, fontWeight: FontWeight.w400),
+            ),
+            Text(
+              "Montree MT",
+              style: GoogleFonts.poppins(
+                  fontSize: 20, fontWeight: FontWeight.w600),
+            )
+          ],
+        ),
+        const Spacer(),
+        const Icon(
+          Iconsax.shopping_cart,
+          size: 28,
+        ),
+        const SizedBox(
+          width: 20,
+        ),
+        const Icon(
+          Iconsax.notification,
+          size: 28,
+        )
+      ],
+    );
+  }
+
+  TextField _search() {
+    return TextField(
+      decoration: InputDecoration(
+          hintText: 'Search food, drink, etc',
+          hintStyle:
+              GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w400),
+          filled: true,
+          prefixIcon: Icon(Iconsax.search_favorite),
+          prefixIconColor: primaryColor,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(
+              28,
+            ),
+            borderSide: const BorderSide(
+              width: 0,
+              style: BorderStyle.none,
+            ),
+          ),
+          contentPadding: const EdgeInsets.all(14)),
+    );
+  }
+
+  ClipRRect _cardOrder() {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(16),
+      child: Stack(
+        children: [
+          SizedBox(
+            height: 144,
+            width: double.infinity,
+            child: Image.network(
+              'https://images.unsplash.com/photo-1466814314367-45323ac74e2b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1185&q=80',
+              fit: BoxFit.cover,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Burger and Sweet",
+                  style: GoogleFonts.poppins(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.w600),
+                ),
+                Text(
+                  "Up to 3 times per day",
+                  style: GoogleFonts.poppins(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500),
+                ),
+                const SizedBox(height: 6),
+                MaterialButton(
+                  onPressed: () {},
+                  color: primaryColor,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24)),
+                  child: Text(
+                    "Order Now",
+                    style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500),
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }
