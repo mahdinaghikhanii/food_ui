@@ -17,9 +17,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue),
+      debugShowCheckedModeBanner: false,
       home: const MainPage(),
     );
   }
@@ -220,7 +219,7 @@ class _MainPageState extends State<MainPage> {
       GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: 0.82,
+            childAspectRatio: 0.78,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10),
         itemCount: foodTrendings.length,
